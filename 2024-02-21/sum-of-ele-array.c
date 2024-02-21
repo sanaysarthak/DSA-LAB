@@ -8,10 +8,10 @@ int main()
     printf("Enter size of array: ");
     scanf("%d", &n);
 
-    // Allocating memory dynamically using calloc()
+    // Allocating memory dynamically using malloc()
     int *ptr = (int*)malloc(n * sizeof(int));
     if(ptr != NULL)
-        printf("Memory allocated dynamically at runtime by calloc()\n");
+        printf("Memory allocated dynamically at runtime by malloc()\n");
 
     // Taking elements as input from the user, and finding its sum
     int sum = 0;
