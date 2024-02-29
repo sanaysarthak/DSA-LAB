@@ -39,7 +39,7 @@ int main() {
             break;
 
         default:
-            printf("Enter correct choice.");
+            printf("Enter correct choice.\n");
             break;
         }
 
@@ -69,10 +69,14 @@ void pop() {
 }
 
 void peep() {
+    if(TOP == -1)
+        printf("Stack Underflow! There are no elements.\n");
     printf("%d\n", stack[TOP]);
 }
 
 void display() {
+    if(TOP == -1)
+        printf("Stack Underflow! No elements to display.\n");
     int n = TOP;
     while(n >= 0) {
         printf("%d\n", stack[n]);
