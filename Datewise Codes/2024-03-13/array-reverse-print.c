@@ -27,3 +27,22 @@ int main() {
 
     return 0;
 }
+
+// Sample output in the terminal
+/*
+Enter size of Array : 5
+
+Input the elements:-
+Enter element at index 0 : 10
+Enter element at index 1 : 20
+Enter element at index 2 : 30
+Enter element at index 3 : 40
+Enter element at index 4 : 50
+
+Elements of the array in reverse order are :-
+50
+40
+30
+20
+10
+*/
