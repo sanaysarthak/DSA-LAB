@@ -1,5 +1,5 @@
 // Program to perform singly linked list insertions (insertion at start, end, and at given index value)
-// You can write your own display function to test your code
+// Wrote the display_nodes() function on my own to test the code on execution
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -86,11 +86,27 @@ void insert_index() {
 	}
 }
 
+void display_nodes() {
+	struct node *ptr;
+	ptr = head;
+	if(head == NULL) 
+		printf("Linked List Empty! No nodes created!\n");
+	else {
+		printf("The Nodes are:-\n");
+		while(ptr != NULL) {
+			printf("%d\t", ptr -> data);
+			ptr = ptr -> next;
+		}
+		printf("\n");
+	}
+	
+}
+
 int main() {
 	int ch;
 
 	do {
-		printf("Enter 1 for Insertion at Start.\nEnter 2 for Insertion at End.\nEnter 3 for Insertion at given index.\nEnter 0 to exit.\n");
+		printf("\nEnter 1 for Insertion at Start.\nEnter 2 for Insertion at End.\nEnter 3 for Insertion at given index. \nEnter 4 to display. \nEnter 0 to exit.\n");
     	printf("Enter choice: ");
     	scanf("%d", &ch);
 
@@ -107,8 +123,12 @@ int main() {
     			insert_index();
     			break;
 
+    		case 4:
+    			display_nodes();
+    			break;
+
     		case 0:
-    			printf("Exited the program succesfully!");
+    			printf("\nExited the program succesfully!");
     			break;
 
     		default:
