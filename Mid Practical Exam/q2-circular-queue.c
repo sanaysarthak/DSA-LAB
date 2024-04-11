@@ -1,5 +1,5 @@
-// Program in C to implement Circular Queue Operations
-// fix enqueue, when element is already is 
+// Program in C to implement Circular Queue Operations (Enqueue, Dequeue, and Display)
+
 #include <stdio.h>
 
 // Global Variables
@@ -9,26 +9,31 @@ int front = -1;
 int rear = -1;
 
 void enqueue() {
-	if(rear >= MAX-1)
+	if((rear == MAX-1 && front == 0) || front == rear + 1)
 		printf("Circular Queue Overflow!\n");
 	else {
 		int ele;
 		printf("Enter element: ");
 		scanf("%d", &ele);
-		if(front == -1)
-			front = 0;
-		rear++;
+		if(front == -1 && rear == -1)
+			front = rear = 0;
+		else if(rear == MAX-1 && front != 0)
+			rear = 0;
+		else 
+			rear++;
 		circ_queue[rear] = ele;
 	}
 }
 
 void dequeue() {
-	if(rear == -1 || front > rear)
+	if(rear == -1 || front - rear == 1)
 		printf("Queue Underflow!\n");
 	else {
-		printf("Dequeued element is: %d", circ_queue[front]);
+		printf("Dequeued element is: %d\n", circ_queue[front]);
 		if(front == rear) // condition when all the elements are deleted.
 			front = rear = -1;
+		else if(front == MAX-1)
+			front = 0;
 		else
 			front++;
 	}
@@ -38,9 +43,19 @@ void display() {
 	if(rear == -1)
 		printf("Queue Underflow!\n");
 	else {
-		printf("The queue contains the following elements:- \n");
-		for(int i=front; i>=0; i--) {
-			printf("%d\t", circ_queue[i]);
+		printf("Elements of the circular queue are:-\n");
+		if(rear > front) {
+			for(int i=front; i<=rear; i++) {
+				printf("%d\t", circ_queue[i]);
+			}
+		}
+		else {
+			for(int i=front; i<=MAX-1; i++) {
+				printf("%d\t", circ_queue[i]);
+			}
+			for(int i=0; i<=rear; i++) {
+				printf("%d\t", circ_queue[i]);
+			}
 		}
 		printf("\n");
 	}
