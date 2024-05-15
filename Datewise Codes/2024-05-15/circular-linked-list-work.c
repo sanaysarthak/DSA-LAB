@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdli.h>
+#include <stdlib.h>
 
 struct node {
     int data;
@@ -44,7 +44,11 @@ void insert_index() {
     printf("Enter index at which you want to perform insertion: ");
     scanf("%d", &index);
     temp = head;
-    // write your own logic
+    // add the code when index == 0
+    /*if(index == 0) {
+        
+    }*/
+    // write your own logic, instead of the below logic
     for(int i=0; i<=index; i++) {
         temp = temp -> next;
         if(temp == head) 
@@ -72,7 +76,7 @@ void delete_first() {
 }
 
 void delete_index() {
-
+    struct node *ptr, *temp;
 }
 
 void delete_last() {
@@ -80,7 +84,7 @@ void delete_last() {
         printf("Linked list is empty.\n");
     else if(head -> next == head) {
         free(head);
-        printf("Node deleted.")
+        printf("Node deleted.");
     }
     else {
         struct node *ptr, *temp;
@@ -128,9 +132,7 @@ int main() {
     printf("Circular Linked List Operations.\n\n");
     int ch;
     do {
-        printf("\nEnter 1 for Insertion at Start.\nEnter 2 for Insertion at End.\nEnter 3 for Insertion at given index. 
-        Enter 4 for Deletion at End.\nEnter 5 for Deletion at End.\nEnter 6 for Deletion at given index. 
-        \nEnter 7 for searching element.\nEnter 8 to display nodes.\nEnter 0 to exit.\n");
+        printf("\nEnter 1 for Insertion at Start.\nEnter 2 for Insertion at End.\nEnter 3 for Insertion at given index.\nEnter 4 for Deletion at End.\nEnter 5 for Deletion at End.\nEnter 6 for Deletion at given index.\nEnter 7 for searching element.\nEnter 8 to display nodes.\nEnter 0 to exit.\n");
     	printf("Enter choice: ");
     	scanf("%d", &ch);
  
