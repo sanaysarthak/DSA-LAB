@@ -4,7 +4,7 @@ Delete at Begin, Delete at End, Delete at Index, Display. */
 
 // Program in C to implement doubly linked list operations
 
-// write index based delete_index() function
+// write index based delete_index() function (it is right now, done according to the data value of the node)
 
 #include <stdio.h>
 #include <stdlib.h>
