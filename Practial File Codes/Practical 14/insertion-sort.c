@@ -12,7 +12,7 @@ void insert_elements(int arr[], int size) {
 }
 
 void insertion_sort(int arr[], int size) {
-    // starting from index 1, because it is by default said to be sorted
+    // starting from index 1, because index 0 by default is said to be sorted
     for(int i=1; i<size; i++) {
         int key = arr[i];
         int j = i - 1;
