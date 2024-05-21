@@ -9,12 +9,13 @@ void swap(int *x, int *y) {
     *y = temp;
 }
 
-void bubble_sort(int arr[], int size) {
-    // Bubble Sort Algorithm
+void insertion_sort(int arr[], int size) {
+    // Insertion Sort Algorithm
     for(int i=0; i<size; i++) {
-        for(int j=0; j<size-1; j++) {
-            if(arr[j] > arr[j+1])
-                swap(&arr[j], &arr[j+1]);
+        int j = i;
+        while(j>0 && arr[j] < arr[j-1]) {
+            swap(&arr[j], &arr[j-1]);
+            j--;
         }
     }
 }
@@ -26,7 +27,7 @@ void print_array(int arr[], int size) {
 }
 
 int main() {
-    
+
     // intializing the array
     int size;
     printf("Enter size of array: ");
@@ -41,11 +42,11 @@ int main() {
     printf("\nThe original array is:-\n");
     print_array(arr, size);
 
-    // Performing Bubble Sort on the given array
-    bubble_sort(arr, size);
-    
-    printf("\n\nSorted array after applying Bubble Sort Algorithm:-\n");
+    // Performing Insertion Sort on the given array
+    insertion_sort(arr, size);
+
+    printf("\n\nSorted array after applying Insertion Sort Algorithm:-\n");
     print_array(arr, size);
-    
+
     return 0;
 }
