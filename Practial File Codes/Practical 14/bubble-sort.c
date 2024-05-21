@@ -3,25 +3,21 @@
 
 #include <stdio.h>
 
-void insert_elements(int arr[], int size) {
-    printf("\nEnter elements in the array:-\n");
-    for(int i=0; i<size; i++) {
-        printf("Enter element at index %d: ", i);
-        scanf("%d", &arr[i]);
-    }
+void swap(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
 }
 
 void bubble_sort(int arr[], int size) {
-    for(int i=0; i<size-1; i++) {
+    // Bubble Sort Algorithm
+    for(int i=0; i<size; i++) {
         for(int j=0; j<size-1; j++) {
-            if(arr[j] > arr[j+1]) {
-                int temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-            }
+            if(arr[j] > arr[j+1])
+                swap(&arr[j], &arr[j+1]);
         }
     }
-} 
+}
 
 void print_array(int arr[], int size) {
     for(int i=0; i<size; i++) {
@@ -30,17 +26,26 @@ void print_array(int arr[], int size) {
 }
 
 int main() {
+    
+    // intializing the array
     int size;
-    printf("Enter the size of array: ");
+    printf("Enter size of array: ");
     scanf("%d", &size);
     int arr[size];
-    insert_elements(arr, size);
+    printf("Enter elements of the array:-\n");
+    for(int i=0; i<size; i++) {
+        printf("Enter element at index %d: ", i);
+        scanf("%d", &arr[i]);
+    }
 
-    printf("\nOriginal Array is:-\n");
+    printf("\nThe original array is:-\n");
     print_array(arr, size);
 
-    printf("\n\nArray after performing bubble sorting:-\n");
+    // Performing Bubble Sort on the given array
     bubble_sort(arr, size);
+    
+    printf("\n\nSorted array after applying Bubble Sort Algorithm:-\n");
     print_array(arr, size);
+    
     return 0;
 }
