@@ -42,20 +42,16 @@ void pop() {
 }
 
 void peep() {
-    struct node* ptr = head;
-    if(ptr == NULL)
+    if(head == NULL)
         printf("Stack is empty! Underflow!\n");
     else {
-        while(ptr -> next != NULL) {
-            ptr = ptr -> next;
-        }
-        printf("Peeped Element: %d\n", ptr -> data);
+        printf("Peeped Element: %d\n", head->data);
     }
 }
 
 void display() {
     struct node* ptr = head;
-    if(ptr == NULL) 
+    if(ptr == NULL)
         printf("Stack is empty! Underflow!\n");
     else {
         printf("Elements in the stack are:- \n");
