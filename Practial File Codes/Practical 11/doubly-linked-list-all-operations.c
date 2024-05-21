@@ -74,29 +74,43 @@ void insert_end() {
 void insert_index() {
     struct node* ptr, *temp;
     ptr = (struct node*)malloc(sizeof(struct node));
-    if(ptr == NULL) 
+    if(ptr == NULL) {
         printf("Node not created! No memory available!\n");
+        return;
+    }
+    int index, val, flag = 0;
+    printf("Enter index at which you want to insert node: ");
+    scanf("%d", &index);
+    printf("Enter data: ");
+    scanf("%d", &val);
+    if (index == 0 || head == NULL) {
+        ptr->data = val;
+        ptr->next = head;
+        ptr->prev = NULL;
+        if (head != NULL) {
+            head->prev = ptr;
+        }
+        head = ptr;
+    } 
     else {
-        int index, val, flag = 0;
-        printf("Enter index at which you want to insert node: ");
-        scanf("%d", &index);
-        printf("Enter data: ");
-        scanf("%d", &val);
         temp = head;
-        for(int i=0; i<=index; i++) {
-            temp = temp -> next;
+        for(int i = 0; i < index - 1; i++) {
             if(temp == NULL) {
                 printf("Cannot insert node at given index.\n");
                 flag = 1;
+                return;
             }
+            temp = temp->next;
         }
-        ptr -> data = val;
-        ptr -> next = temp -> next;
-        ptr -> prev = temp;
-        temp -> next = ptr;
-        temp -> next -> prev = ptr;
-        printf("Node inserted at index %d.\n", index);
+        ptr->data = val;
+        ptr->next = temp->next;
+        ptr->prev = temp;
+        if (temp->next != NULL) {
+            temp->next->prev = ptr;
+        }
+        temp->next = ptr;
     }
+    printf("Node inserted at index %d.\n", index);
 }
 
 void delete_start() {
@@ -119,18 +133,19 @@ void delete_start() {
 
 void delete_end() {
     struct node* ptr;
-    if(head == NULL) 
+    if(head == NULL)
         printf("Linked List is empty! No nodes exist!\n");
-    else if(head -> next == NULL) {
-        head = NULL;
+    else if(head->next == NULL) {
         free(head);
-        printf("Only one node in linked list deleted.\n");
+        head = NULL;
+        printf("Last node deleted.\n");
     }
     else {
         ptr = head;
-        if(ptr -> next != NULL) 
-            ptr = ptr -> next;
-        ptr -> prev -> next = NULL;
+        while(ptr->next != NULL) {
+            ptr = ptr->next;
+        }
+        ptr->prev->next = NULL;
         free(ptr);
         printf("Last node deleted.\n");
     }
@@ -138,24 +153,29 @@ void delete_end() {
 
 void delete_index() {
     struct node *ptr, *temp;  
-    int val;  
-    printf("Enter the data after which the node is to be deleted: ");  
-    scanf("%d", &val);  
+    int index;  
+    printf("Enter the index of the node to be deleted: ");  
+    scanf("%d", &index);  
     ptr = head;  
-    while(ptr -> data != val)  {
-        ptr = ptr -> next;
-    }  
-    if(ptr -> next == NULL)
-        printf("Cannot delete.\n");  
-    else if(ptr -> next -> next == NULL)  
-        ptr ->next = NULL;  
-    else {
-        temp = ptr -> next;  
-        ptr -> next = temp -> next;  
-        temp -> next -> prev = ptr;  
-        free(temp);  
-        printf("Node deleted.\n");  
-    }     
+    for (int i = 0; i < index - 1; i++) {
+        if (ptr == NULL) {
+            printf("Invalid index.\n");
+            return;
+        }
+        ptr = ptr->next;
+    }
+    if (ptr == NULL || ptr->next == NULL) {
+        printf("Cannot delete.\n");
+        return;
+    }
+    temp = ptr->next;  
+    ptr->next = temp->next;  
+
+    if (temp->next != NULL) {
+        temp->next->prev = ptr;
+    }
+    free(temp);  
+    printf("Node deleted.\n");
 }
 
 void display_nodes() {
