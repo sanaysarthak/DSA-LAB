@@ -3,24 +3,20 @@
 
 #include <stdio.h>
 
-void insert_elements(int arr[], int size) {
-    printf("\nEnter elements in the array:-\n");
-    for(int i=0; i<size; i++) {
-        printf("Enter element at index %d: ", i);
-        scanf("%d", &arr[i]);
-    }
+void swap(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
 }
 
 void insertion_sort(int arr[], int size) {
-    // starting from index 1, because index 0 by default is said to be sorted
-    for(int i=1; i<size; i++) {
-        int key = arr[i];
-        int j = i - 1;
-        while((j >= 0) && (key < arr[j])) { // Moving the elements greater than key to one position ahead from their current position
-            arr[j+1] = arr[j];
-            j = j - 1; // decrementing
+    // Insertion Sort Algorithm
+    for(int i=0; i<size; i++) {
+        int j = i;
+        while(j>0 && arr[j] < arr[j-1]) {
+            swap(&arr[j], &arr[j-1]);
+            j--;
         }
-        arr[j+1] = key; // filling the original j value, but writing j+1 as we did decrement
     }
 }
 
@@ -31,17 +27,25 @@ void print_array(int arr[], int size) {
 }
 
 int main() {
+    // initializing the array
     int size;
-    printf("Enter the size of array: ");
+    printf("Enter size of array: ");
     scanf("%d", &size);
     int arr[size];
-    insert_elements(arr, size);
+    printf("Enter elements of the array:-\n");
+    for(int i=0; i<size; i++) {
+        printf("Enter element at index %d: ", i);
+        scanf("%d", &arr[i]);
+    }
 
-    printf("\nOriginal Array is:-\n");
+    printf("\nThe original array is:-\n");
     print_array(arr, size);
 
-    printf("\n\nArray after performing Insertion sorting:-\n");
+    // Performing Insertion Sort on the given array
     insertion_sort(arr, size);
+
+    printf("\n\nSorted array after applying Insertion Sort Algorithm:-\n");
     print_array(arr, size);
+
     return 0;
 }
