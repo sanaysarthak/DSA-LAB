@@ -5,27 +5,22 @@
 
 #include <stdio.h>
 
-void insert_elements(int arr[], int size) {
-    printf("\nEnter elements in the array:-\n");
-    for(int i=0; i<size; i++) {
-        printf("Enter element at index %d: ", i);
-        scanf("%d", &arr[i]);
-    }
+void swap(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
 }
 
 void selection_sort(int arr[], int size) {
+    // Selection Sort Algorithm
     for(int i=0; i<size; i++) {
-        int key = arr[i];
-        int temp = key;
-        int index = i;
+        int min = i;
         for(int j=i; j<size; j++) {
-            if(arr[j] < temp) {
-                temp = arr[j];
-                index = i;
-            }
+            if(arr[j] < arr[min]) 
+                min = j;
         }
-        arr[i] = temp;
-        arr[index] = key;
+        if(min != i)
+            swap(&arr[i], &arr[min]);
     }
 }
 
@@ -36,17 +31,26 @@ void print_array(int arr[], int size) {
 }
 
 int main() {
+
+    // intializing the array
     int size;
-    printf("Enter the size of array: ");
+    printf("Enter size of array: ");
     scanf("%d", &size);
     int arr[size];
-    insert_elements(arr, size);
+    printf("Enter elements of the array:-\n");
+    for(int i=0; i<size; i++) {
+        printf("Enter element at index %d: ", i);
+        scanf("%d", &arr[i]);
+    }
 
-    printf("\nOriginal Array is:-\n");
+    printf("\nThe original array is:-\n");
     print_array(arr, size);
 
-    printf("\n\nArray after performing Selection sorting:-\n");
+    // Performing Selection Sort on the given array
     selection_sort(arr, size);
+
+    printf("\n\nSorted array after applying Selection Sort Algorithm:-\n");
     print_array(arr, size);
+
     return 0;
 }
